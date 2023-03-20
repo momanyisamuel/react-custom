@@ -8,6 +8,6 @@ interface BlockQuoteProps extends HTMLAttributes<HTMLParagraphElement>, VariantP
 
 export default function BlockQuote({className, ...props}: BlockQuoteProps) {
   return (
-    <p className={cn(styles())} {...props} />
+    <p className={cn(styles({className}))} {...props} />
   )
 }

@@ -19,7 +19,7 @@ const headingVariants = cva("scroll-m-20 tracking-tight", {
 interface HeadingProps extends HTMLAttributes<HTMLHeadingElement>, VariantProps<typeof headingVariants> {}
 
 const Heading: FC<HeadingProps> = ({className, variant, ...props}) => {
-  return <h1 className={cn(headingVariants({variant}))} {...props} />;
+  return <h1 className={cn(headingVariants({variant,className}))} {...props} />;
 };
 
 export { Heading };

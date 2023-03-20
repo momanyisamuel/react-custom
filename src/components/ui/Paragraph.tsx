@@ -21,6 +21,6 @@ interface ParagraphProps extends HTMLAttributes<HTMLParagraphElement>, VariantPr
 
 export default function Paragraph({className, size, ...props}: ParagraphProps) {
   return (
-    <p className={cn(paragraphVariants({size}))} {...props} />
+    <p className={cn(paragraphVariants({size,className}))} {...props} />
   )
 }
