@@ -132,7 +132,7 @@ const Home: NextPage = () => {
         expects a response.
       </Paragraph>
 
-      <BlockQuote>
+      <BlockQuote className="font-semibold">
         "After all," he said, "everyone enjoys a good joke, so it's only fair
         that they should pay for the privilege."
       </BlockQuote>
@@ -141,9 +141,10 @@ const Home: NextPage = () => {
         <li>2nd level of jokes: 10 gold coins</li>
         <li>3rd level of one-liners : 20 gold coins</li>
       </List>
-      <Code>@radix-ui/react-alert-dialog</Code>
+      <Code className="mb-2">@radix-ui/react-alert-dialog</Code>
 
       <Table columns={columns} data={data} />
+
     </div>
   );
 };

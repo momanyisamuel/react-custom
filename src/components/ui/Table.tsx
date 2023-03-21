@@ -10,6 +10,7 @@ import {
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import cn from "classnames";
 import { cva, VariantProps } from "class-variance-authority";
+import Paragraph from "./Paragraph";
 
 type TableProps = {
   columns: Object[];
@@ -44,21 +45,34 @@ function Table({ columns, data }: TableProps) {
   );
   return (
     <div>
-      <GlobalFilter
-        preGlobalFilteredRows={preGlobalFilteredRows}
-        globalFilter={state.globalFilter}
-        setGlobalFilter={setGlobalFilter}
-      />
-      {headerGroups.map((headerGroup) =>
-        headerGroup.headers.map((column) =>
-          column.Filter ? (
-            <div key={column.id}>
-              <label htmlFor={column.id}>{column.render("Header")}: </label>
-              {column.render("Filter")}
-            </div>
-          ) : null
-        )
-      )}
+      <div className="mb-2 flex justify-between">
+        <div className="f">
+          <GlobalFilter
+            preGlobalFilteredRows={preGlobalFilteredRows}
+            globalFilter={state.globalFilter}
+            setGlobalFilter={setGlobalFilter}
+          />
+        </div>
+        <div className="f">
+          {headerGroups.map((headerGroup) =>
+            headerGroup.headers.map((column) =>
+              column.Filter ? (
+                <div key={column.id} className="flex items-center gap-2">
+                  <label htmlFor={column.id} className="block items-center">
+                    <Paragraph
+                      size="small"
+                      className="items-center font-semibold"
+                    >
+                      {column.render("Header")}
+                    </Paragraph>
+                  </label>
+                  {column.render("Filter")}
+                </div>
+              ) : null
+            )
+          )}
+        </div>
+      </div>
       <table {...getTableProps()} className="w-full">
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -103,39 +117,62 @@ function Table({ columns, data }: TableProps) {
           })}
         </tbody>
       </table>
-      <div className="pagination">
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-          <ChevronLeftIcon className="h-5 w-5 text-blue-500" />
-          <ChevronLeftIcon className="h-5 w-5 text-blue-500" />
-        </button>
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
-          <ChevronLeftIcon className="h-5 w-5 text-blue-500" />
-        </button>
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
-          <ChevronRightIcon className="h-5 w-5 text-blue-500" />
-        </button>
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
-          <ChevronRightIcon className="h-5 w-5 text-blue-500" />
-          <ChevronRightIcon className="h-5 w-5 text-blue-500" />
-        </button>
-        <span>
-          Page
-          <strong>
-            {state.pageIndex + 1} of {pageOptions.length}
-          </strong>
-        </span>
-        <select
-          value={state.pageSize}
-          onChange={(e) => {
-            setPageSize(Number(e.target.value));
-          }}
-        >
-          {[5, 10, 20].map((pageSize) => (
-            <option key={pageSize} value={pageSize}>
-              Show {pageSize}
-            </option>
-          ))}
-        </select>
+      <div className="pagination mt-2 flex justify-between">
+        <div className="flex w-full">
+          <button
+            className="relative inline-flex items-center border border-blue-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+            type="button"
+          >
+            <div className="flex">
+              <ChevronLeftIcon className="h-5 w-5 text-blue-500" />
+              <ChevronLeftIcon className="h-5 w-5 text-blue-500" />
+            </div>
+          </button>
+          <button
+            className="relative inline-flex items-center border border-blue-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            <ChevronLeftIcon className="h-5 w-5 text-blue-500" />
+          </button>
+          <button
+            className="relative inline-flex items-center border border-blue-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
+            <ChevronRightIcon className="h-5 w-5 text-blue-500" />
+          </button>
+          <button
+            className="relative inline-flex items-center border border-blue-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            <div className="flex">
+              <ChevronRightIcon className="h-5 w-5 text-blue-500" />
+              <ChevronRightIcon className="h-5 w-5 text-blue-500" />
+            </div>
+          </button>
+        </div>
+        <div className="flex w-full items-center justify-end gap-2">
+          <Paragraph size="small" className="block">
+            Page {state.pageIndex + 1} of {pageOptions.length}
+          </Paragraph>
+          <select
+            className="block rounded border-gray-300 py-2 px-4 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
+            value={state.pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+          >
+            {[5, 10, 20].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </div>
   );
@@ -156,17 +193,22 @@ function GlobalFilter({
   }, 200);
 
   return (
-    <span>
-      Search:{" "}
+    <div className="flex w-full flex-col">
+      <label className="hidden">
+        <Paragraph size="small" className="mb-2 uppercase">
+          Search
+        </Paragraph>
+      </label>
       <input
+        className="border py-2 px-4 shadow-inner focus:border-sky-300"
         value={value || ""}
         onChange={(e) => {
           setValue(e.target.value);
           onChange(e.target.value);
         }}
-        placeholder={`${count} records...`}
+        placeholder={`Search over ${count} records`}
       />
-    </span>
+    </div>
   );
 }
 
@@ -188,6 +230,7 @@ export function SelectColumnFilter({
   // Render a multi-select box
   return (
     <select
+      className="block rounded border-gray-300 py-2 px-4 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
       name={id}
       id={id}
       value={filterValue}
