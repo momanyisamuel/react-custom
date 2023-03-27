@@ -2,6 +2,7 @@ import BlockQuote from "@/components/ui/BlockQuote";
 import { Button } from "@/components/ui/Button";
 import Code from "@/components/ui/Code";
 import Dialog from "@/components/ui/Dialog";
+import { Input } from "@/components/ui/Input";
 import List from "@/components/ui/List";
 import Paragraph from "@/components/ui/Paragraph";
 import Table, { SelectColumnFilter } from "@/components/ui/Table";
@@ -228,6 +229,9 @@ const Home: NextPage = () => {
         >
           Show Toast
         </Button>
+      </div>
+      <div className="mx-auto mt-2 w-1/4">
+        <Input></Input>
       </div>
     </div>
   );

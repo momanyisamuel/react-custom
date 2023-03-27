@@ -11,6 +11,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import cn from "classnames";
 import { cva, VariantProps } from "class-variance-authority";
 import Paragraph from "./Paragraph";
+import { Input } from "./Input";
 
 type TableProps = {
   columns: Object[];
@@ -282,7 +283,8 @@ function GlobalFilter({
           Search
         </Paragraph>
       </label>
-      <input
+      
+      <Input
         className="border py-2 px-4 shadow-inner focus:border-sky-300"
         value={value || ""}
         onChange={(e) => {
