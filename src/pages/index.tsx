@@ -5,6 +5,7 @@ import Dialog from "@/components/ui/Dialog";
 import List from "@/components/ui/List";
 import Paragraph from "@/components/ui/Paragraph";
 import Table, { SelectColumnFilter } from "@/components/ui/Table";
+import { useToast } from "@/hooks/ui/use-toast";
 import { Heading } from "@ui/Heading";
 import { type NextPage } from "next";
 import { useMemo, useState } from "react";
@@ -74,6 +75,7 @@ const getData = () => [
 
 const Home: NextPage = () => {
   const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
+  const { toast } = useToast();
   const columns = useMemo(
     () => [
       {
@@ -181,8 +183,51 @@ const Home: NextPage = () => {
       <div className="fl">
         <Button onClick={handleDialogOpen}>Open Dialog</Button>
         <Dialog isOpen={isDialogOpen} onClose={handleDialogClose}>
-          <h1>Hello</h1>
+          <Paragraph className="font-semibold">
+            Data integration is the seminal problem of the digital age. For over
+            ten years, we’ve helped the world’s premier organizations rise to
+            the challenge.
+          </Paragraph>
+          <Paragraph>
+            Palantir Foundry radically reimagines the way enterprises interact
+            with data by amplifying and extending the power of data integration.
+            With Foundry, anyone can source, fuse, and transform data into any
+            shape they desire. Business analysts become data engineers — and
+            leaders in their organization’s data revolution.
+          </Paragraph>
+          <Paragraph>
+            Foundry’s back end includes a suite of best-in-class data
+            integration capabilities: data provenance, git-style versioning
+            semantics, granular access controls, branching, transformation
+            authoring, and more. But these powers are not limited to the
+            back-end IT shop.
+          </Paragraph>
+          <Paragraph>
+            In Foundry, tables, applications, reports, presentations, and
+            spreadsheets operate as data integrations in their own right. Access
+            controls, transformation logic, and data quality flow from original
+            data source to intermediate analysis to presentation in real time.
+            Every end product created in Foundry becomes a new data source that
+            other users can build upon. And the enterprise data foundation goes
+            where the business drives it.
+          </Paragraph>
+          <Paragraph>
+            Start the revolution. Unleash the power of data integration with
+            Palantir Foundry.
+          </Paragraph>
         </Dialog>
+      </div>
+      <div className="mt-2">
+        <Button
+          onClick={() => {
+            toast({
+              title: "Scheduled: Catch up",
+              description: "Friday, February 10, 2023 at 5:57 PM",
+            });
+          }}
+        >
+          Show Toast
+        </Button>
       </div>
     </div>
   );

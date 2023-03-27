@@ -12,7 +12,7 @@ const Dialog = ({ isOpen, onClose, children }: DialogProps) => {
     : 'hidden';
 
   const modalClass = isOpen
-    ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded text-sm shadow-sm p-6'
+    ? 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#f6f7f9] rounded text-sm shadow p-6'
     : 'hidden';
 
   return (
