@@ -10,6 +10,8 @@ import { useToast } from "@/hooks/ui/use-toast";
 import { Heading } from "@ui/Heading";
 import { type NextPage } from "next";
 import { useMemo, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/Avatar";
+
 
 const getData = () => [
   {
@@ -233,6 +235,13 @@ const Home: NextPage = () => {
       <div className="mx-auto mt-2 w-1/4">
         <Input></Input>
       </div>
+      <div className="mx-auto mt-2 w-1/4">
+        <Avatar>
+          <AvatarImage src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </div>
+      <div className="mx-auto mt-2 w-1/4"></div>
     </div>
   );
 };
