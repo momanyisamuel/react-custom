@@ -11,6 +11,14 @@ import { Heading } from "@ui/Heading";
 import { type NextPage } from "next";
 import { useMemo, useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/Avatar";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@ui/Select";
+
 
 
 const getData = () => [
@@ -235,13 +243,32 @@ const Home: NextPage = () => {
       <div className="mx-auto mt-2 w-1/4">
         <Input></Input>
       </div>
-      <div className="mx-auto mt-2 w-1/4">
+      <div className="mx-auto mt-2 flex w-1/2 gap-1">
         <Avatar>
           <AvatarImage src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?&w=128&h=128&dpr=2&q=80" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
+        <Avatar>
+          <AvatarImage src="https://images.unsplash.com/photo-1542513217-0b0eedf7005d?&w=128&h=128&dpr=2&q=80" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarImage src="" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
       </div>
-      <div className="mx-auto mt-2 w-1/4"></div>
+      <div className="mx-auto mt-2 w-1/4">
+        <Select>
+          <SelectTrigger className="w-[180px]">
+            <SelectValue placeholder="Theme" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="light">Light</SelectItem>
+            <SelectItem value="dark">Dark</SelectItem>
+            <SelectItem value="system">System</SelectItem>
+          </SelectContent>
+        </Select>
+      </div>
     </div>
   );
 };
