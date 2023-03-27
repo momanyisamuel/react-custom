@@ -1,12 +1,13 @@
 import BlockQuote from "@/components/ui/BlockQuote";
 import { Button } from "@/components/ui/Button";
 import Code from "@/components/ui/Code";
+import Dialog from "@/components/ui/Dialog";
 import List from "@/components/ui/List";
 import Paragraph from "@/components/ui/Paragraph";
 import Table, { SelectColumnFilter } from "@/components/ui/Table";
 import { Heading } from "@ui/Heading";
 import { type NextPage } from "next";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 const getData = () => [
   {
@@ -72,6 +73,7 @@ const getData = () => [
 ];
 
 const Home: NextPage = () => {
+  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false);
   const columns = useMemo(
     () => [
       {
@@ -99,6 +101,14 @@ const Home: NextPage = () => {
     ],
     []
   );
+
+  const handleDialogOpen = () => {
+    setIsDialogOpen(true);
+  };
+
+  const handleDialogClose = () => {
+    setIsDialogOpen(false);
+  };
 
   const data = useMemo(() => getData(), []);
 
@@ -137,11 +147,7 @@ const Home: NextPage = () => {
         "After all," he said, "everyone enjoys a good joke, so it's only fair
         that they should pay for the privilege."
       </BlockQuote>
-      <div className="m-5">
-      <Button intent="secondary" size="large" roundness="round">Hello word!</Button>
-      <Button intent="default" size="large" roundness="round">Hello word!</Button>
-      <Button intent="primary" size="large" roundness="round">Hello word!</Button>
-      </div>
+
       <List type="ul">
         <li>1st level of puns: 5 gold coins</li>
         <li>2nd level of jokes: 10 gold coins</li>
@@ -149,9 +155,35 @@ const Home: NextPage = () => {
       </List>
       <Code className="mb-2">@radix-ui/react-alert-dialog</Code>
 
+      <Paragraph size="small" className="mb-2 uppercase">
+        Table
+      </Paragraph>
       <Table columns={columns} data={data} />
 
+      <Paragraph size="small" className="mb-2 uppercase">
+        Buttons
+      </Paragraph>
+      <div className="m-5 flex gap-2">
+        <Button intent="secondary" size="large" roundness="round">
+          Hello word!
+        </Button>
+        <Button intent="default" size="large" roundness="round">
+          Hello word!
+        </Button>
+        <Button intent="primary" size="large" roundness="round">
+          Hello word!
+        </Button>
+      </div>
 
+      <Paragraph size="small" className="mb-2 uppercase">
+        Dialog
+      </Paragraph>
+      <div className="fl">
+        <Button onClick={handleDialogOpen}>Open Dialog</Button>
+        <Dialog isOpen={isDialogOpen} onClose={handleDialogClose}>
+          <h1>Hello</h1>
+        </Dialog>
+      </div>
     </div>
   );
 };
