@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@ui/Select";
+import DonutStat from "@/components/ui/DonutStat";
 
 
 
@@ -268,6 +269,10 @@ const Home: NextPage = () => {
             <SelectItem value="system">System</SelectItem>
           </SelectContent>
         </Select>
+      </div>
+
+      <div className="mx">
+        <DonutStat value={50} label="hello"/>
       </div>
     </div>
   );
