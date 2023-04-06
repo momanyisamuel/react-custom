@@ -19,6 +19,7 @@ import {
   SelectValue,
 } from "@ui/Select";
 import DonutStat from "@/components/ui/DonutStat";
+import Navigation from "@/components/ui/Navigation";
 
 
 
@@ -126,6 +127,17 @@ const Home: NextPage = () => {
 
   const data = useMemo(() => getData(), []);
 
+  const links = [
+    {
+      href: "/home",
+      text: "Home",
+    },
+    {
+      href: "/about",
+      text: "About",
+    },
+  ];
+
   return (
     <div className="container mx-auto my-5">
       <Paragraph size="small" className="mb-2 uppercase">
@@ -201,7 +213,7 @@ const Home: NextPage = () => {
             the challenge.
           </Paragraph>
           <Paragraph>
-            Palantir Foundry radically reimagines the way enterprises interact
+            Palantir Foundry radically re imagines the way enterprises interact
             with data by amplifying and extending the power of data integration.
             With Foundry, anyone can source, fuse, and transform data into any
             shape they desire. Business analysts become data engineers — and
@@ -272,7 +284,10 @@ const Home: NextPage = () => {
       </div>
 
       <div className="mx">
-        <DonutStat value={50} label="hello"/>
+        <DonutStat value={50} label="hello" />
+      </div>
+      <div className="mx-auto mt-2 w-1/4">
+        <Navigation links={links} />
       </div>
     </div>
   );
